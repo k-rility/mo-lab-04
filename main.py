@@ -32,13 +32,6 @@ print(f'матрица А оценок для альтернатив: {vector_cr
 criteria__ = np.array([None, 0.3, 0.6, 0.1])
 print(f'допустимые значения: {criteria__}')
 
-matrix_rating = np.array([
-    [3, 0, 0, 1],
-    [0, 3, 1, 3],
-    [1, 2, 2, 3],
-    [3, 3, 3, 0]
-])
-
 vec_prior = np.array([3, 1, 2, 0])
 
 if __name__ == '__main__':
