@@ -120,21 +120,6 @@ class MethodWeighingCombiningCriteria:
         answer = i
         return answer
 
-
-class MethodHierarchyAnalysis:
-    def __init__(self, matrix, vector_priorities):
-        self.__matrix = matrix.copy()
-        self.__vector_priorities = vector_priorities
-
-        self.matrix_criteria0 = self.pairwise_comparison(0)
-        self.matrix_criteria1 = self.pairwise_comparison(1)
-        self.matrix_criteria2 = self.pairwise_comparison(2)
-        self.matrix_criteria3 = self.pairwise_comparison(3)
-        self.matrix_criteria = np.transpose(
-            np.matrix([self.matrix_criteria0, self.matrix_criteria1, self.matrix_criteria2, self.matrix_criteria3]))
-        self.matrix_priorities = np.transpose(np.matrix(self.comparison_priorities()))
-        self.answer = self.get_solution()
-
     def compare(self, rating1, rating2):
         delta = rating1 - rating2
         if delta == 3:
@@ -151,6 +136,20 @@ class MethodHierarchyAnalysis:
             return 1 / 5
         else:
             return 1 / 7
+        
+class MethodHierarchyAnalysis:
+    def __init__(self, matrix, vector_priorities):
+        self.__matrix = matrix.copy()
+        self.__vector_priorities = vector_priorities
+
+        self.matrix_criteria0 = self.pairwise_comparison(0)
+        self.matrix_criteria1 = self.pairwise_comparison(1)
+        self.matrix_criteria2 = self.pairwise_comparison(2)
+        self.matrix_criteria3 = self.pairwise_comparison(3)
+        self.matrix_criteria = np.transpose(
+            np.matrix([self.matrix_criteria0, self.matrix_criteria1, self.matrix_criteria2, self.matrix_criteria3]))
+        self.matrix_priorities = np.transpose(np.matrix(self.comparison_priorities()))
+        self.answer = self.get_solution()
 
     def pairwise_comparison(self, criteria_index):
         new_matrix = np.array(
